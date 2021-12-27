@@ -1,4 +1,4 @@
-html,
+/*html,
 body {
   padding: 0;
   margin: 0;
@@ -14,3 +14,50 @@ a {
 * {
   box-sizing: border-box;
 }
+*/
+
+:root {
+  --background-black: #000000;
+  --content-title: #9370db;
+
+  --gradient-1: #800080;
+  --gradient-2: #5946b2;
+  --gradient-3: #FF00D9;
+  --gradient-4: #fb4d46;
+
+  --custom-purple: #8806ce;
+
+  --test1: #D04471;
+  --content-text: #fefefa;
+  --content-title: #9370db;
+
+  --light-grey: #eae7e6;
+  --dark-grey: #57605f;
+  --orange: #bf5700;
+  --light-orange: #ffa700;
+  --shadow-color: #000000aa;
+}
+
+* presets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  color: #fefefa;
+  line-height: 150%;
+  font-size: 13pt;
+
+  background: black
+}
+
+a {
+  color: #8f8f25;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+

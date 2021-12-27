@@ -1,0 +1,57 @@
+.albumGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .albumMouseOff {
+    position: relative;
+    height: 10em;
+    width: 10em;
+    margin: 1em;
+  }
+
+  .albumMouseOn {
+    position: relative;
+    height: 10em;
+    width: 10em;
+    margin: 1em;
+  }
+  
+  .albumMouseOn img {
+    position: absolute;
+    height: 95%;
+    width: 95%;
+    opacity: 40%;
+  }
+  
+  .albumMouseOff img {
+    position: absolute;
+    height: 90%;
+    width: 90%;
+  }
+
+  .albumMouseOn .albumText {
+    opacity: 100%;
+    position: absolute;
+    top: 25%;
+    font-weight: bold;
+    overflow-wrap: normal;
+    text-align: center;
+    font-size: 15px;
+    width: 90%;
+    z-index: 1;
+  }
+
+  .albumMouseOff .albumText {
+    opacity: 0%;
+    position: absolute;
+    top: 25%;
+    font-weight: bold;
+    overflow-wrap: normal;
+    text-align: center;
+    font-size: 15px;
+    width: 90%;
+    z-index: 1;
+  }
+  
