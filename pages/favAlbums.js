@@ -1,14 +1,18 @@
 import { isValidElement } from "react"
 import Layout from '../components/layout/Layout'
-import AlbumGrid from '../components/albumGrid/AlbumGrid'
-import { getAllAlbums, getAllAlbumIds } from "../lib/albums"
+import AlbumGridNavigator from '../components/albumGridNavigator/AlbumGridNavigator'
+import { getFavAlbums, getAllAlbumIds } from "../lib/albums"
+import { getAlbumById, getAlbumDataById } from "../lib/spotifyAlbums"
+
 
 export default function FavoriteAlbums(props) {
+
+
     return (
         <>
             <Layout>
-                <AlbumGrid
-                    albums={props.albums}
+                <AlbumGridNavigator
+                    favAlbumsData={props.favAlbumsData}
                 />
             </Layout>
         </>
@@ -16,11 +20,17 @@ export default function FavoriteAlbums(props) {
 }
 
 export async function getStaticProps() {
-    const albums = await getAllAlbums();
+    const favAlbums = getFavAlbums()
+    const favAlbumsData = 
+        // Awaits for the array of proises to be completed
+        await Promise.all(favAlbums.map((album) => {
+            return getAlbumDataById(album.album_id);
+        }))
+    
 
     return {
         props: {
-            albums
+            favAlbumsData,
         }
     }
 }

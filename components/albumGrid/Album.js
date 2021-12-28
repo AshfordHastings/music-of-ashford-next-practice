@@ -8,25 +8,24 @@ export default function Album(props) {
     const [style, setStyle] = useState(albumGridStyle.albumMouseOff);
 
     return(
-      <Link
-      href={`albums/${props.album.id}`}>
+      
         <div 
         className={style}
         onMouseEnter={() => setStyle(albumGridStyle.albumMouseOn)}
         onMouseLeave={() => setStyle(albumGridStyle.albumMouseOff)}
-        
+        onClick={() => props.handleSelectAlbum(props.album.id)}
         >
           <div className={albumGridStyle.albumText}>
-            {props.album.title}
+            {props.album.name}
                -
             <br />
-            {props.album.artist}
+            {props.album.artists[0].name}
           </div>
           <img
-            src={props.album.album_art}
-            alt={props.album.title}
+            src={props.album.images[0].url}
+            alt={props.album.name}
           />
         </div>
-      </Link>
+      
     )
 }
