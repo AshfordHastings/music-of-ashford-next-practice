@@ -7,11 +7,15 @@ export default function AlbumGrid(props) {
 
   // albumGrid
   const [display, setDisplay] = useState(albumGridStyle.albumMouseOff);
-  
-  const albums = props.favAlbumsData.map((album) => {
+  console.log("myAlbumDataBlob: " + JSON.stringify(props.albumsData))
+
+  const albums = (props.albumsData == undefined) ? null : props.albumsData.map((album) => {
+    console.log("mapping album: " + album.id);
     return <Album
+      key={album.id}
       album={album}
-      handleSelectAlbum={props.handleSelectAlbum}
+      onSelectAlbum={props.onSelectAlbum}
+      onRemoveAlbum={props.onRemoveAlbum}
     />
 
   })

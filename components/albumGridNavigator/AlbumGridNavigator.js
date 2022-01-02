@@ -7,7 +7,7 @@ export default function AlbumPageNavigator(props) {
     const [display, setDisplay] = useState("grid");
     const [albumSelected, setAlbumSelected] = useState("");
 
-    const handleSelectAlbum = (id) => {
+    const onSelectAlbum = (id) => {
         setAlbumSelected(id);
     }
 
@@ -19,17 +19,18 @@ export default function AlbumPageNavigator(props) {
         return (
             <>
                 <AlbumGrid
-                    favAlbumsData={props.favAlbumsData}
-                    handleSelectAlbum={handleSelectAlbum}
+                    albumsData={props.albumsData}
+                    onRemoveAlbum={props.onRemoveAlbum}
+                    onSelectAlbum={onSelectAlbum}
                 />
             </>
         )
     } else {
-        console.log(props.favAlbumsData.find((album) => album.id == albumSelected));
+        console.log(props.albumsData.find((album) => album.id == albumSelected));
         return (
             <>
                 <AlbumPage
-                    albumData={props.favAlbumsData.find((album) => album.id == albumSelected)}
+                    albumData={props.albumsData.find((album) => album.id == albumSelected)}
                     handleBackClick={handleBackClick}
                 />
             </>

@@ -25,6 +25,9 @@ export default function Layout({ children }) {
                             <p className={layoutStyles.bannerEntry}>
                                 <Link href='/favAlbums'>Favorite Albums</Link>
                             </p>
+                            <p className={layoutStyles.bannerEntry}>
+                                <Link href='/recentAlbums'>Recent Albums</Link>
+                            </p>
                         </div>
                     </header>
 
