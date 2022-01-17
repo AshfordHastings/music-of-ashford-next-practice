@@ -1,0 +1,167 @@
+
+.albumListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px;
+
+    width: 80%;
+
+}
+
+.listInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listTitle {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+
+    font-weight: 600;
+    font-size: max(2vw, 20px);
+}
+
+.editIcon {
+    margin-left: 10px;
+}
+
+.listDescription {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+
+    font-size: max(1.3vw, 13px);
+    font-style:italic;
+    font-weight:lighter;
+
+}
+
+.saveEditButton {
+
+}
+
+.albumEntryContainer {
+    /* Auto layout */
+    width: 100%;
+
+display: flex;
+flex-direction: column;
+align-items: stretch;
+justify-content: flex-start;
+
+
+/* Inside auto layout */
+
+}
+
+.albumEntry{
+    margin: 10px 0px;
+
+    border: 8px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(119.27deg, rgba(128, 0, 128, 0.5795) 13.66%, rgba(89, 70, 178, 0.798) 26.63%, rgba(255, 0, 217, 0.684) 46.47%, rgba(251, 77, 70, 0.6935) 65.16%, rgba(128, 0, 128, 0.912) 84.99%);
+    
+    height: 90px;
+
+    display: flex;
+    padding: 15px 2%;
+
+    position: relative;
+/* Inside auto layout */
+
+/* flex: none;
+order: 0;
+flex-grow: 0;
+margin: 54px 0px; */
+}
+
+.imageContainer {
+    height: 150px;
+    width: 150px;
+    float: left;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.imageContainer img {
+    height: 40px;
+    width: 40px;
+}
+
+.albumInfoContainer {
+
+    flex-grow: 1;
+}
+
+.albumTitle {
+    margin: 2px 0px;
+
+    font-family: "Bahnschrift", Times, serif;
+    font-style: italic;
+
+    font-weight: 600;
+    font-size: max(2vw, 20px);
+}
+.albumArtist {
+    margin: 2px 0px;
+
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+
+    font-weight: 600;
+    font-size: max(1.5vw, 17px);
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.dateReleased{
+
+    
+    font-family: "Bahnschrift", Times, serif;
+    font-style: italic;
+
+    font-weight: 30;
+    font-size: max(1.2vw, 13px);
+    color: rgba(255, 255, 255);
+}
+
+
+
+.rightMenu{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 10px;
+
+}
+
+.albumAdded {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: max(1.1vw, 10px);
+    color: rgba(255, 255, 255, 0.68);
+}
+
+
+.spotifyIcon {
+    margin-left: 10px;
+
+}
+
+.searchMenuContainer {
+    align-self:stretch;
+}
+.addAlbumIcon {
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
+.deleteIcon {
+  position: absolute;
+  right: -35px;
+  top: -10px;
+}

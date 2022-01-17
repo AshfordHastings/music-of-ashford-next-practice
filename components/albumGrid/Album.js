@@ -9,7 +9,7 @@ export default function Album(props) {
 
   const deleteButton = (!props.onRemoveAlbum) ? null :
     <div
-      onClick={() => props.onRemoveAlbum(props.album.id)}
+      onClick={() => props.onRemoveAlbum(props.album.spotifyId)}
     >
       X
     </div>
@@ -23,16 +23,16 @@ export default function Album(props) {
         className={style}
         onMouseEnter={() => setStyle(albumGridStyle.albumMouseOn)}
         onMouseLeave={() => setStyle(albumGridStyle.albumMouseOff)}
-        onClick={() => props.onSelectAlbum(props.album.id)}
+        onClick={() => props.onSelectAlbum(props.album)}
       >
         <div className={albumGridStyle.albumText}>
           {props.album.name}
           -
           <br />
-          {props.album.artists[0].name}
+          {props.album.artist}
         </div>
         <img
-          src={props.album.images[0].url}
+          src={props.album.image}
           alt={props.album.name}
         />
       </div>

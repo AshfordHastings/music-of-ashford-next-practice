@@ -15,6 +15,8 @@ export default function AlbumPageNavigator(props) {
         setAlbumSelected("");
     }
 
+    const extraSections = (albumSelected == "") ? props.extraSections : null;
+
     if (albumSelected == "") {
         return (
             <>
@@ -23,6 +25,7 @@ export default function AlbumPageNavigator(props) {
                     onRemoveAlbum={props.onRemoveAlbum}
                     onSelectAlbum={onSelectAlbum}
                 />
+                {extraSections}
             </>
         )
     } else {

@@ -1,9 +1,7 @@
 import { isValidElement } from "react"
 import Layout from '../components/layout/Layout'
 import AlbumGridNavigator from '../components/albumGridNavigator/AlbumGridNavigator'
-import { getRecentAlbums, getAllAlbumIds } from "../lib/albums"
-import { getRecentlyPlayedTracks } from "../lib/spotifyCalls/spotifyAlbums"
-import {getRefreshedAccessToken } from "../lib/spotifyCalls/spotifyAuth"
+import { getRecentAlbums, getAllAlbumIds } from "./api/albums/albums"
 
 export default function RecentAlbums(props) {
 
@@ -20,8 +18,13 @@ export default function RecentAlbums(props) {
 }
 
 export async function getServerSideProps() {
-    const recentAlbums = await getRecentAlbums();
-    console.log(JSON.stringify(recentAlbums));
+    const recentSpotifyAlbums = await getRecentAlbums();
+    const recentAlbums = recentSpotifyAlbums.map( album => {
+        return({
+            album
+        })
+    })
+  //  console.log(JSON.stringify(recentAlbums));
     //const authData = await getAccessToken(code);
     //console.log(authData);
     return {

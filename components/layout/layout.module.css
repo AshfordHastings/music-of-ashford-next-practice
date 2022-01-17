@@ -1,4 +1,79 @@
-/* header */
+
+.colors {
+    --linear-blend-2: radial-gradient(36.8% 36.8% at 72.7% 35.7%, rgba(181, 0, 165, 0.175) 0%, rgba(38, 98, 213, 0.25) 100%), linear-gradient(141.19deg, rgba(89, 70, 178, 0.89) 19.44%, rgba(251, 77, 70, 0.7031) 38.71%, rgba(255, 0, 217, 0.5963) 61.22%, rgba(89, 70, 178, 0.89) 80.2%), linear-gradient(237.02deg, rgba(128, 0, 128, 0.9604) 20.94%, rgba(173, 0, 159, 0.894643) 35.07%, rgba(255, 0, 217, 0.7742) 59.64%, rgba(89, 70, 178, 0.98) 82.16%);
+
+}
+
+.layout {
+    position: relative;
+    /* width: 1728px;
+    height: 1117px;
+    overflow-y: scroll; */
+
+    background: radial-gradient(36.8% 36.8% at 72.7% 35.7%, rgba(181, 0, 165, 0.175) 0%, rgba(38, 98, 213, 0.25) 100%), linear-gradient(141.19deg, rgba(89, 70, 178, 0.89) 19.44%, rgba(251, 77, 70, 0.7031) 38.71%, rgba(255, 0, 217, 0.5963) 61.22%, rgba(89, 70, 178, 0.89) 80.2%), linear-gradient(237.02deg, rgba(128, 0, 128, 0.9604) 20.94%, rgba(173, 0, 159, 0.894643) 35.07%, rgba(255, 0, 217, 0.7742) 59.64%, rgba(89, 70, 178, 0.98) 82.16%);;
+}
+
+.bodyLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 61px 36px;
+    left: 43px;
+    right: 44px;
+    top: 156px;
+
+    background: #000000;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 22px 25px;
+
+    position: absolute;
+    width: 1350px;
+    height: 156px;
+    left: 43px;
+    top: 0px;
+}
+
+.toolbarEntries {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    position: static;
+    width: 660px;
+    height: 36px;
+    left: 25px;
+    top: 60px;
+
+
+/* Inside auto layout */
+
+    flex: none;
+}
+
+.toolbarEntry {
+    position: static;
+    width: 333px;
+    height: 36px;
+    left: 327px;
+    top: 0px;
+
+    font-family: Graphik;
+    font-style: normal;
+}
+
+
+
 .header {
     width: 100%;
 }
@@ -22,7 +97,7 @@
     float: left;
 }
 
-/*body*/
+
 
 .body {
     font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -42,4 +117,9 @@
 .mainContainer {
     height: 85%;
     background-color: black;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
   }
+ 

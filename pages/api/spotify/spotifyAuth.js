@@ -6,7 +6,7 @@ const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 // const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
 export async function getAuth() {
-
+    const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
     const headers = {
         headers: {
@@ -86,6 +86,9 @@ export async function getAuth() {
 // }
 
 export async function getRefreshedAccessToken() {
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
    console.log("print refresh token: " + refreshToken);
 

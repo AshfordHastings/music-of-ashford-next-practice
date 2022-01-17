@@ -3,7 +3,7 @@ import { getAuth } from './spotifyAuth';
 import { getRefreshedAccessToken } from './spotifyAuth';
 import qs, { stringify } from 'qs';
 
-import { pruneAlbum, pruneTrack } from '../helper';
+import { pruneAlbum, pruneTrack } from '../../../lib/helper';
 
 export async function getAlbumDataById(albumId) {
     const refreshedAccessToken = await getRefreshedAccessToken();
@@ -136,8 +136,9 @@ export async function searchSpotifyAlbum(album, artist) {
                     offset: 0
                 }
             })
-        console.log("mydata call: " + JSON.stringify(data.albums.items.map(album => pruneAlbum(album))));
-        return data.albums.items.map(album => pruneAlbum(album));
+            return data.albums.items;
+        // console.log("mydata call: " + JSON.stringify(data.albums.items.map(album => pruneAlbum(album))));
+        // return data.albums.items.map(album => pruneAlbum(album));
     } catch (error) {
         console.log(error.response);
     }

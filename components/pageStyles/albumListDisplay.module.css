@@ -1,0 +1,170 @@
+
+/* 
+.albumListsContainer {
+    display: flex;
+    flex-direction: column;
+
+    border-color: white;
+    border-radius: 1em;
+
+}
+
+.albumListContainerA {
+
+    background: linear-gradient(
+      to bottom right,
+      var(--gradient-1),
+      var(--gradient-2),
+      var(--gradient-3),
+      var(--gradient-4),
+      var(--gradient-1)
+    );
+}
+
+.albumListContainerB {
+
+    background: blue;
+    
+    width: 90%;
+    height: 90%;
+}
+
+.imageContainer {
+    float: left;
+    background: white;
+    width: 2em;
+    height: 2em;
+}
+.imageContainer img {
+    height: 80%;
+    width: 80%;
+}
+
+.infoContainer {
+    float: right;
+
+}
+
+.listTitle {
+
+}
+
+.listDescription {
+
+} */
+
+.albumListsDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px;
+
+    width: 80%;
+
+}
+
+.albumListsContainer {
+    /* Auto layout */
+    
+
+align-items: stretch;
+justify-content: flex-start;
+
+display: flex;
+flex-direction: column;
+
+width: 100%;
+/* Inside auto layout */
+
+}
+
+.albumListEntry {
+    border: 8px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(119.27deg, rgba(128, 0, 128, 0.5795) 13.66%, rgba(89, 70, 178, 0.798) 26.63%, rgba(255, 0, 217, 0.684) 46.47%, rgba(251, 77, 70, 0.6935) 65.16%, rgba(128, 0, 128, 0.912) 84.99%);
+    
+    display: flex;
+    padding: 15px 2%;
+/* Inside auto layout */
+
+/* flex: none;
+order: 0;
+flex-grow: 0;
+margin: 54px 0px; */
+}
+
+.imageContainer {
+    height: 150px;
+    width: 150px;
+    float: left;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.albumImage {
+    
+
+   
+}
+.albumImage img {
+    height: 40px;
+    width: 40px;
+}
+
+.infoContainer {
+
+    flex-grow: 1;
+}
+
+
+.rightMenu{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 10px;
+
+}
+
+.pageTitle {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+
+    font-weight: 600;
+    font-size: max(2vw, 20px);
+}
+
+.listItemCount {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: max(1.1vw, 10px);
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.listLastUpdated{
+    float: right;
+
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: max(1.1vw, 10px);
+    color: rgba(255, 255, 255, 0.68);
+}
+.listTitle {
+    font-size: max(1.3vw, 13px);
+    font-style:italic;
+    font-weight:lighter;
+}
+
+.listDescription {
+    font-size: max(1.3vw, 13px);
+    font-style:italic;
+    font-weight:lighter;
+
+}
+
+.addListImage {
+
+}

@@ -2,6 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    position: relative;
+    margin-top: 2em;
+
   }
   
   .albumMouseOff {
