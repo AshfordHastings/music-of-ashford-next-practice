@@ -20,8 +20,8 @@ export default function SearchMenu(props) {
     return (
 
         <form className={style.searchMenu}>
-            <input class={style.searchMenuItem} type="text" id="artist" name="artist" placeholder='Artist' value={artistSearch} onChange={(e) => setArtistSearch(e.target.value)} />
-            <input class={style.searchMenuItem} type="text" id="album" name="album" placeholder='Album' value={albumSearch} onChange={(e) => setAlbumSearch(e.target.value)} />
+            <input className={style.searchMenuItem} type="text" id="artist" name="artist" placeholder='Artist' value={artistSearch} onChange={(e) => setArtistSearch(e.target.value)} />
+            <input className={style.searchMenuItem} type="text" id="album" name="album" placeholder='Album' value={albumSearch} onChange={(e) => setAlbumSearch(e.target.value)} />
             <div className={style.searchButtonContainer}>
                 <button onClick={onHandleSearch}>Search</button>
                 <button onClick={onHideSearchMenu}>Cancel</button>

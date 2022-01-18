@@ -100,6 +100,7 @@ export default function List(props) {
 
     const albumEntries = albums.map(album =>
         <AlbumEntry
+            key={album.spotifyId}
             album={album}
             editModeOn={editModeOn}
             onRemoveAlbum={onRemoveAlbum}

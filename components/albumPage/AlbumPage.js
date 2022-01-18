@@ -29,7 +29,7 @@ export default function AlbumPage(props) {
         <div className={albumPageStyle.albumInfoContainerB}>
           {/* <h2>{millisToMinutes(props.albumData.duration_ms)} minutes</h2> */}
           <h2>Released {releaseDate(props.albumData.release_date)}</h2>
-          <h2><a href={props.albumData.external_urls.spotify} target='_blank'>Listen</a></h2>
+          <h2><a href={props.albumData.external_urls.spotify} rel="noopener noreferrer" target='_blank'>Listen</a></h2>
         </div>
       </div>
       <ReviewBox />

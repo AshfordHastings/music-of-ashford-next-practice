@@ -85,6 +85,7 @@ export function AlbumListDisplay(props) {
 
     const albumListEntries = albumLists.map(albumList =>
         <AlbumListEntry
+            key={albumList.id}
             albumList={albumList}
             onRemoveAlbumList={onRemoveAlbumList}
             editModeOn={editModeOn}
@@ -93,6 +94,7 @@ export function AlbumListDisplay(props) {
 
     const newAlbumListEntries = newAlbumLists.map(albumList =>
         <NewAlbumListEntry
+            key={albumList.id}
             albumList={albumList}
             onSaveAlbumList={onSaveAlbumList}
             onCancelAlbumList={onCancelAlbumList}
@@ -124,7 +126,9 @@ export function AlbumListDisplay(props) {
 
 export function AlbumListEntry(props) {
     const albumImages = (props.albumList.albumImages) ? props.albumList.albumImages.map(image =>
-        <div className={style.albumImage}>
+        <div 
+            key={Math.random().toString(16).slice(2)}
+            className={style.albumImage}>
             <Image src={image} width={65} height={65} />
         </div>
     ) : null
