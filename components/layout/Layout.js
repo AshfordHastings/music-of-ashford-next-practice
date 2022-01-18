@@ -19,18 +19,18 @@ export default function Layout({ children }) {
                 <div className={layoutStyles.contentContainer}>
                     <header className={layoutStyles.header}>
                         <div className={layoutStyles.banner}>
-                            <p className={layoutStyles.bannerEntry}>
+                            {/* <p className={layoutStyles.bannerEntry}>
                                 <Link href='/'>Home</Link>
                             </p>
                             <p className={layoutStyles.bannerEntry}>
                                 <Link href='/about'>About</Link>
-                            </p>
-                            <p className={layoutStyles.bannerEntry}>
+                            </p> */}
+                            {/* <p className={layoutStyles.bannerEntry}>
                                 <Link href='/favAlbums'>Favorite Albums</Link>
                             </p>
                             <p className={layoutStyles.bannerEntry}>
                                 <Link href='/recentAlbums'>Recent Albums</Link>
-                            </p>
+                            </p> */}
                             <p className={layoutStyles.bannerEntry}>
                                 <Link href='/albumLists'>Album Lists</Link>
                             </p>

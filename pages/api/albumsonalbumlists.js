@@ -64,6 +64,7 @@ export async function addAlbumToAlbumList(album, id) {
                 artist: album.artist,
                 date_released: new Date(album.date_released),
                 image: album.image,
+                href: album.href
             },
         })
     }

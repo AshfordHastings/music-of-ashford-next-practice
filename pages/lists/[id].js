@@ -190,8 +190,8 @@ export function AlbumEntry(props) {
                 <div className={style.albumAdded}>{moment(props.album.addedAt).fromNow()}</div>
                 <div className={style.spotifyIcon}>
                     <Link
-                        href={`/lists`}>
-                        <a>
+                        href={`${props.album.href}`}>
+                        <a target="_blank">
                             <Image src='/images/spotify-icon.png' alt='Spotify Icon' width={18} height={18} />
                         </a>
                     </Link>

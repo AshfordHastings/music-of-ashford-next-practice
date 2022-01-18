@@ -16,6 +16,7 @@ model Album {
   artist        String
   date_released DateTime
   image         String
+  href          String
   albumLists    AlbumsOnAlbumLists[]
 }
 

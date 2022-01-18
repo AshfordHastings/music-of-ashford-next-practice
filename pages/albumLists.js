@@ -223,6 +223,8 @@ export async function getServerSideProps() {
         });
     }));
 
+    albumListsData.sort((a, b) => -a.lastUpdated.localeCompare(b.lastUpdated))
+
     return {
         props: {
             albumListsData

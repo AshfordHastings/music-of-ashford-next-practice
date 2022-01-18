@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-import { searchAlbum } from "../../pages/api/albums/albums";
 import AlbumGrid from "../albumGrid/AlbumGrid";
-import AlbumPageNavigator from "../albumGridNavigator/AlbumGridNavigator";
 import SearchMenu from "./SearchMenu";
 import axios from 'axios';
 
@@ -28,7 +26,8 @@ export default function SearchAlbumContainer(props) {
                             name: searchAlbum.name,
                             artist: searchAlbum.artists[0].name,
                             date_released: date.toISOString(),
-                            image: searchAlbum.images[0].url
+                            image: searchAlbum.images[0].url,
+                            href: searchAlbum.external_urls.spotify
                         }
                     }) : [];
                     setSearchResults(searchAlbums);

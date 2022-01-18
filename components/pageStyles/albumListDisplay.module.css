@@ -78,11 +78,7 @@ width: 100%;
 
 }
 
-.backArrow {
-    float: right;
-    position: absolute;
-    right: 0px;
-}
+
 
 .albumListEntry {
     border: 8px solid;

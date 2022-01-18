@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { PrismaClient } from '@prisma/client';
+import client from './../prisma';
 import { pruneAlbum } from '../../../lib/helper';
 import { getAlbumDataById, getRecentlyPlayedTracks, searchSpotifyAlbum } from '../spotify/spotifyAlbums';
 import { responseSymbol } from 'next/dist/server/web/spec-compliant/fetch-event';
@@ -36,18 +36,8 @@ export default async function handler(req, res) {
     }
 }
 
-let db = null;
-export async function getClient() {
-    if (db != null) {
-        return db;
-    } else {
-        db = new PrismaClient();
-        return db;
-    }
-}
 
 export async function getFavAlbums() {
-    const client = await getClient();
     const albumsData = await
         client.album.findMany({
         });
@@ -67,7 +57,6 @@ export async function getFavAlbums() {
 export async function addFavAlbum(album) {
     console.log("About to add album with id: " + album.spotify_id)
     try {
-        const client = await getClient();
         const album = await client.album.create
             ({
                 data: {
@@ -86,7 +75,6 @@ export async function addFavAlbum(album) {
 export async function removeFavAlbum(album_id) {
     console.log("About to remove album with id: " + album_id)
     try {
-        const client = await getClient();
         const album = await client.album.deleteMany({
             where: {
                 spotifyId: album_id
@@ -139,7 +127,6 @@ export async function getRecentAlbums() {
 // }
 
 export async function getAlbumsOnAlbumListById(albumListId) {
-    const client = await getClient();
     const albumsData = await
         client.album.findMany({
             where: {
