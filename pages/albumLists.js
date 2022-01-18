@@ -3,6 +3,7 @@ import { isValidElement, useEffect, useState } from "react"
 import axios from "axios";
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Layout from '../components/layout/Layout'
 import { getAlbumLists } from "./api/albumlist";
 import style from '../components/pageStyles/albumListDisplay.module.css'
@@ -51,13 +52,26 @@ export function AlbumListDisplay(props) {
     }
 
     const onSaveAlbumList = async (newAlbumList) => {
+        let date = new Date();
+
         setNewAlbumLists(newAlbumLists.filter(albumList => albumList.id !== newAlbumList.id))
         const response = await axios.post('/api/albumlist', {
             title: newAlbumList.title,
             description: newAlbumList.description
         });
         console.log("onSaveAlbumList response: " + JSON.stringify(response));
-        setAlbumLists(albumLists.concat(response.data));
+        setAlbumLists(albumLists.concat({
+            ...response.data,
+            itemCount: 0,
+            lastUpdated: date.toISOString(),
+            albumImages: []
+        }
+        ));
+    }
+
+    const onCancelAlbumList = (id) => {
+        console.log("canceling: " + id);
+        setNewAlbumLists(newAlbumLists.filter(item => item.id !== id));
     }
 
     const onRemoveAlbumList = async (albumList) => {
@@ -81,10 +95,9 @@ export function AlbumListDisplay(props) {
         <NewAlbumListEntry
             albumList={albumList}
             onSaveAlbumList={onSaveAlbumList}
+            onCancelAlbumList={onCancelAlbumList}
         />
     )
-
-
 
     return (
         <div className={style.albumListsDisplayContainer}>
@@ -92,7 +105,7 @@ export function AlbumListDisplay(props) {
                 Album Lists
 
                 <a className={style.editIcon} onClick={onEditModeOn}>
-                    <Image src='/images/edit-icon.png' alt='Add List' width={18} height={18} />
+                    <Image src='/images/edit-icon.png' alt='Edit Icon' width={18} height={18} />
                 </a>
 
             </div>
@@ -102,7 +115,7 @@ export function AlbumListDisplay(props) {
             </div>
             <div className={style.addListImage} onClick={onAddAlbumList}>
                 <a>
-                    <Image src='/images/plus-circle.png' width={50} height={50} />
+                    <Image src='/images/plus-circle.png' width={100} height={100} />
                 </a>
             </div>
         </div>
@@ -110,11 +123,11 @@ export function AlbumListDisplay(props) {
 }
 
 export function AlbumListEntry(props) {
-    const albumImages = props.albumList.albumImages.map(image =>
+    const albumImages = (props.albumList.albumImages) ? props.albumList.albumImages.map(image =>
         <div className={style.albumImage}>
-            <Image src={image} width={18} height={18} />
+            <Image src={image} width={65} height={65} />
         </div>
-    )
+    ) : null
 
     return (
         <div className={style.albumListEntry}>
@@ -135,11 +148,11 @@ export function AlbumListEntry(props) {
 
             <div className={style.rightMenu}>
                 <div className={style.listLastUpdated}>{moment(props.albumList.lastUpdated).fromNow()}</div>
-                <Link href=''>
+                {/* <Link href=''>
                     <a>
                         <Image src='/images/spotify-icon.png' alt='Spotify Icon' width={18} height={18} />
                     </a>
-                </Link >
+                </Link > */}
                 {
                     props.editModeOn == true &&
                     <a className={style.deleteIcon} onClick={() => props.onRemoveAlbumList(props.albumList)}>
@@ -159,17 +172,18 @@ export function NewAlbumListEntry(props) {
     return (
         <div className={style.albumListEntry}>
             <div className={style.imageContainer}>
-                <div className={style.infoContainer}>
-                    <input type='text' value={title} placeholder='Title' onChange={(e) => setTitle(e.target.value)} className={style.listTitle} />
-                    <input type='text' value={description} placeholder='Description' onChange={(e) => setDescription(e.target.value)} className={style.listTitle} />
-                    <div onClick={props.onSaveAlbumList({
+                </div>
+                <div className={style.addInfoContainer}>
+                    <input type='text' value={title} placeholder='Title' onChange={(e) => setTitle(e.target.value)} className={style.addTitle} />
+                    <textarea value={description} placeholder='Description' onChange={(e) => setDescription(e.target.value)} className={style.addDescription} />
+                    <button onClick={() => props.onSaveAlbumList({
                         id: props.albumList.id,
                         title: title,
                         description: description
-                    })}>Create List</div>
+                    })} className={style.addButton}>Create List</button>
+                    <button onClick={() => props.onCancelAlbumList(props.albumList.id)} className={style.addButton}>Cancel</button>
                 </div>
             </div>
-        </div >
     )
 }
 

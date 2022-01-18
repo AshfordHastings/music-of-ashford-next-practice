@@ -3,11 +3,14 @@ import { getAlbumListById } from '../api/albumlist';
 import Layout from '../../components/layout/Layout';
 import Image from 'next/image'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SearchAlbumContainer from '../../components/searchAlbum/SearchAlbumContainer';
+import moment from "moment";
 
 import style from '../../components/pageStyles/list.module.css';
+import { getAlbumOnAlbumList } from '../api/albumsonalbumlists';
 
 export default function List(props) {
 
@@ -18,6 +21,7 @@ export default function List(props) {
     const [editTitle, setEditTitle] = useState('');
     const [editDescription, setEditDescription] = useState('');
 
+    const router = useRouter();
 
     useEffect(() => {
         if (props.albums != undefined) {
@@ -30,8 +34,12 @@ export default function List(props) {
     }, []);
 
     const onAddAlbum = async (album) => {
-        setAlbums(albums.concat(album));
-        console.log(JSON.stringify(album));
+        let date = new Date();
+        setAlbums(albums.concat({
+            ...album,
+            addedAt: date.toISOString(),
+        }));
+        console.log("albumAdded: " + JSON.stringify(album));
         const response = await axios.put('/api/albumsonalbumlists', {
             album,
             id: props.albumList.id
@@ -47,6 +55,20 @@ export default function List(props) {
             }
         });
     }
+
+
+    const onRemoveAlbumList = async () => {
+        const response = await axios.delete('/api/albumlist', {
+            data: {
+                albumList: props.albumList
+            }
+        });
+        router.push('/albumLists');
+
+    }
+
+
+
 
     const onShowSearchMenu = () => {
         setShowSearchMenu(true);
@@ -101,12 +123,19 @@ export default function List(props) {
         <>
             <Layout>
                 <div className={style.albumListContainer}>
+                    <div className={style.backArrow}>
+                        <Link href='/albumLists'>
+                            <a>
+                                <Image src='/images/arrow-left.png' alt='Back Arrow' width={100} height={100} />
+                            </a>
+                        </Link>
+                    </div>
                     {!editModeOn ?
                         <div className={style.listInfoContainer}>
                             <div className={style.listTitle}>
                                 {editTitle}
                                 <a className={style.editIcon} onClick={onEditModeOn}>
-                                    <Image src='/images/edit-icon.png' alt='Add List' width={18} height={18} />
+                                    <Image src='/images/edit-icon.png' alt='Edit Icon' width={18} height={18} />
                                 </a>
                             </div>
 
@@ -129,7 +158,13 @@ export default function List(props) {
                     <div className={style.searchMenuContainer}>
                         {searchMenu}
                     </div>
-
+                    {editModeOn == true &&
+                        <div className={style.removeAlbumList}>
+                            <a onClick={() => onRemoveAlbumList()}>
+                                Delete {props.albumList.title}
+                            </a>
+                        </div>
+                    }
                 </div>
             </Layout >
         </>
@@ -152,7 +187,7 @@ export function AlbumEntry(props) {
                 <div className={style.dateReleased}>{dateReleased.getFullYear()}</div>
             </div>
             <div className={style.rightMenu}>
-                <div className={style.albumAdded}>6 Months Ago</div>
+                <div className={style.albumAdded}>{moment(props.album.addedAt).fromNow()}</div>
                 <div className={style.spotifyIcon}>
                     <Link
                         href={`/lists`}>
@@ -177,13 +212,26 @@ export async function getServerSideProps(context) {
     const { params } = context;
 
     const albumList = await getAlbumListById(params.id);
-    const albumsDB = await getAlbumsOnAlbumListById(params.id);
+    const albumsDBBare = await getAlbumsOnAlbumListById(params.id);
 
-    const albums = albumsDB.map(album => {
-        return (
-            { ...album, date_released: album.date_released.toString() }
-        )
-    })
+    const albums = await Promise.all(albumsDBBare.map(album => {
+        return getAlbumOnAlbumList(album, albumList).then(albumInfo => {
+            console.log("albumInfo: " + JSON.stringify(albumInfo))
+            let addedAt = new Date(albumInfo.addedAt);
+            return (
+                {
+                    ...album,
+                    date_released: album.date_released.toString(),
+                    ...albumInfo,
+                    addedAt: addedAt.toISOString()
+                }
+            )
+        })
+            ;
+    }));
+
+    albums.sort((a, b) => -a.addedAt.localeCompare(b.addedAt))
+
 
     return {
         props: {

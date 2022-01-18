@@ -65,7 +65,7 @@
 
 .albumListsContainer {
     /* Auto layout */
-    
+    margin: 10px 0px;
 
 align-items: stretch;
 justify-content: flex-start;
@@ -78,6 +78,12 @@ width: 100%;
 
 }
 
+.backArrow {
+    float: right;
+    position: absolute;
+    right: 0px;
+}
+
 .albumListEntry {
     border: 8px solid;
     border-image-slice: 1;
@@ -85,6 +91,7 @@ width: 100%;
     
     display: flex;
     padding: 15px 2%;
+    margin: 10px 0px;
 /* Inside auto layout */
 
 /* flex: none;
@@ -100,16 +107,19 @@ margin: 54px 0px; */
 
     flex-grow: 0;
     flex-shrink: 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+
 }
 
 .albumImage {
-    
+    margin: 0px 3px;
 
    
-}
-.albumImage img {
-    height: 40px;
-    width: 40px;
 }
 
 .infoContainer {
@@ -128,6 +138,8 @@ margin: 54px 0px; */
 }
 
 .pageTitle {
+    margin: 2px 0px;
+
     font-family: "Bahnschrift", Times, serif;
     font-style: normal;
 
@@ -135,7 +147,12 @@ margin: 54px 0px; */
     font-size: max(2vw, 20px);
 }
 
+.editIcon {
+    margin-left: 10px;
+}
+
 .listItemCount {
+    margin: 6px 0px;
     font-family: "Bahnschrift", Times, serif;
     font-style: normal;
     font-weight: 500;
@@ -153,18 +170,58 @@ margin: 54px 0px; */
     color: rgba(255, 255, 255, 0.68);
 }
 .listTitle {
-    font-size: max(1.3vw, 13px);
-    font-style:italic;
-    font-weight:lighter;
+    margin: 4px 0px;
+
+    font-family: "Bahnschrift", Times, serif;
+    font-style: italic;
+
+    font-weight: 600;
+    font-size: max(2vw, 20px);
 }
 
 .listDescription {
-    font-size: max(1.3vw, 13px);
+    margin: 4px 0px;
+    font-size: max(1.1vw, 10px);
+    color: rgba(255, 255, 255, 0.9);
     font-style:italic;
     font-weight:lighter;
 
 }
 
+.addTitle {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+  
+    font-weight: 600;
+    font-size: max(1.5vw, 15px);
+    margin: 7px 0px;
+}
+.addDescription {
+    font-family: "Bahnschrift", Times, serif;
+    font-style: normal;
+  
+    font-weight: 250;
+    font-size: max(.75vw, 15px);
+    width: 100%;
+    margin: 7px 0px;
+}
+
+.addInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items:flex-start;
+}
+
+.addButton {
+    width: 20%;
+    margin: 7px 0px;
+}
+
 .addListImage {
+
+}
+
+.removeAlbumList {
 
 }

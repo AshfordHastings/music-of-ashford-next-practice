@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { PrismaClient } from '@prisma/client';
+import client from '../prisma';
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {
@@ -12,20 +12,20 @@ export default async function handler(req, res) {
     }
 }
 
-let db = null;
-export async function getClient() {
-    if (db != null) {
-        return db;
-    } else {
-        db = new PrismaClient();
-        return db;
-    }
-}
+// let db = null;
+// export async function getClient() {
+//     if (db != null) {
+//         return db;
+//     } else {
+//         db = new PrismaClient();
+//         return db;
+//     }
+// }
 
 export async function getAlbumListInfo(id) {
     // get albumArt from most recent four albums, date of most recent album added, and number of items on the list
 
-    const client = await getClient();
+    //const client = await getClient();
     const itemCount = await
         client.albumsOnAlbumLists.count({
             where: {
@@ -83,7 +83,7 @@ export async function getAlbumListInfo(id) {
 }
 
 export async function getAlbumListById(id) {
-    const client = await getClient();
+    //const client = await getClient();
     const albumListData = await
         client.albumList.findUnique({
             where: {
@@ -95,7 +95,7 @@ export async function getAlbumListById(id) {
 }
 
 export async function updateAlbumList(id, titleEdit, descriptionEdit) {
-    const client = await getClient();
+    //const client = await getClient();
     const albumListData = await
         client.albumList.update({
             where: {
@@ -111,7 +111,7 @@ export async function updateAlbumList(id, titleEdit, descriptionEdit) {
 }
 
 export async function createAlbumList(title, description) {
-    const client = await getClient();
+    //const client = await getClient();
     const albumListData = await
         client.albumList.create({
             data: {
@@ -124,7 +124,7 @@ export async function createAlbumList(title, description) {
 }
 
 export async function deleteAlbumList(id) {
-    const client = await getClient();
+    //const client = await getClient();
     const [albumsOnAlbumsListsData, albumListData] = await client.$transaction([
         client.albumsOnAlbumLists.deleteMany({
             where: {

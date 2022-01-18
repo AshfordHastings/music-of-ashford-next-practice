@@ -133,10 +133,10 @@ export async function getRecentAlbums() {
     });
 }
 
-export async function searchAlbum(albumName, artistName) {
-    console.log("blob");
-    return searchSpotifyAlbum(albumName, artistName);
-}
+// export async function searchAlbum(albumName, artistName) {
+//     console.log("blob");
+//     return searchSpotifyAlbum(albumName, artistName);
+// }
 
 export async function getAlbumsOnAlbumListById(albumListId) {
     const client = await getClient();

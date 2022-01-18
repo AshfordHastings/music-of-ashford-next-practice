@@ -1,7 +1,14 @@
-import { PrismaClient } from '@prisma/client';
+
+import client from './prisma';
 
 export default async function handler(req, res) {
-    if(req.method === 'DELETE') {
+    if(req.method === 'GET') {
+        console.log(JSON.stringify(req.body));
+        const albumList = req.body.albumList
+        const album = req.body.album
+        const data = await getAlbumOnAlbumList(album, albumList)
+        return res.status(200).json(data);
+    } else if(req.method === 'DELETE') {
         console.log(JSON.stringify(req.body));
         const albumList = req.body.albumList
         const album = req.body.album
@@ -17,18 +24,29 @@ export default async function handler(req, res) {
 }
 
 
-let db = null;
-export async function getClient() {
-    if (db != null) {
-        return db;
-    } else {
-        db = new PrismaClient();
-        return db;
-    }
+// let db = null;
+// export async function getClient() {
+//     if (db != null) {
+//         return db;
+//     } else {
+//         db = new PrismaClient();
+//         return db;
+//     }
+// }
+
+export async function getAlbumOnAlbumList(album, albumList) {
+    const albumOnAlbumListQuery = await
+        client.albumsOnAlbumLists.findUnique({
+            where: {
+                albumId_albumListId: {albumId: album.spotifyId, albumListId: albumList.id}
+            },
+        });
+    return albumOnAlbumListQuery;
 }
 
+
 export async function addAlbumToAlbumList(album, id) {
-    const client = await getClient();
+    //const client = await getClient();
     const albumQuery = await
         client.album.findUnique({
             where: {
@@ -71,7 +89,7 @@ export async function addAlbumToAlbumList(album, id) {
 
 
 export async function removeAlbumFromAlbumList(album, albumList) {
-    const client = await getClient();
+    //const client = await getClient();
     const albumOnAlbumListQuery = await
         client.albumsOnAlbumLists.deleteMany({
             where: {
