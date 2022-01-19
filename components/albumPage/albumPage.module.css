@@ -64,12 +64,6 @@
     text-align: center;
   }
   
-  .albumInfo h2 {
-  }
-  
-  .albumInfo h3 {
-  }
-  
   .albumNoteContainer {
     flex-grow: 3;
     min-width: 50%;

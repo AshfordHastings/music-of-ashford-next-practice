@@ -24,11 +24,6 @@
   --shadow-color: #000000aa;
 }
 
-* presets */
-* {
-  box-sizing: border-box;
-}
-
 a {
   color: inherit;
   font-style: normal;
