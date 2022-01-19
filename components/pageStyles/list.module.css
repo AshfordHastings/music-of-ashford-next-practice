@@ -49,16 +49,13 @@
 
 .albumEntryContainer {
     margin: 10px 0px;
-    /* Auto layout */
+
     width: 100%;
 
 display: flex;
 flex-direction: column;
 align-items: stretch;
 justify-content: flex-start;
-
-
-/* Inside auto layout */
 
 }
 
@@ -75,12 +72,6 @@ justify-content: flex-start;
     padding: 15px 2%;
 
     position: relative;
-/* Inside auto layout */
-
-/* flex: none;
-order: 0;
-flex-grow: 0;
-margin: 54px 0px; */
 }
 
 .imageContainer {
