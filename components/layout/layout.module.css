@@ -104,7 +104,6 @@
 .contentContainer{
     background: linear-gradient(to bottom right, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4), var(--gradient-1));
     padding: 1em;
-    height: 70em;
   }
   
 .mainContainer {
